@@ -56,6 +56,10 @@ class FileSearcherApp:
         self.preset_dropdown.pack(side="left")
         self.preset_dropdown.bind("<<ComboboxSelected>>", self.update_regex_from_preset)
 
+        # Rescan button (Search button)
+        self.rescan_button = ttk.Button(root, text="Rescan", command=self.search_files, state="disabled")
+        self.rescan_button.pack(pady=10)
+
         # Folder selection button
         self.select_folder_button = ttk.Button(root, text="Select Folder", command=self.select_folder, state="normal")
         self.select_folder_button.pack(pady=10)
@@ -82,10 +86,6 @@ class FileSearcherApp:
         # Add "Delete Selected Files" button above "Rescan" button
         self.delete_button = ttk.Button(root, text="Delete Selected Files", command=self.delete_selected_files, state="disabled")
         self.delete_button.pack(pady=(5, 0))
-
-        # Rescan button (Search button)
-        self.rescan_button = ttk.Button(root, text="Rescan", command=self.search_files, state="disabled")
-        self.rescan_button.pack(pady=10)
 
         # File info label (Total file count and selected files info)
         self.file_info_label = tk.Label(root, text="Total files found: 0, Selected files: 0, Total selected size: 0 MB")
