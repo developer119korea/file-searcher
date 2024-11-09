@@ -52,7 +52,7 @@ class FileSearcherApp:
         # Dropdown menu for preset
         self.preset_var = tk.StringVar(value="Chinese")
         self.preset_dropdown = ttk.Combobox(self.regex_frame, textvariable=self.preset_var, state="readonly")
-        self.preset_dropdown['values'] = ("None", "Chinese")
+        self.preset_dropdown['values'] = ("None", "Chinese", "Images")
         self.preset_dropdown.pack(side="left")
         self.preset_dropdown.bind("<<ComboboxSelected>>", self.update_regex_from_preset)
 
@@ -110,6 +110,8 @@ class FileSearcherApp:
         selected_preset = self.preset_var.get()
         if selected_preset == "Chinese":
             self.regex_var.set(r'[\u4e00-\u9fff]')
+        elif selected_preset == "Images":
+            self.regex_var.set(r'\.(jpg|jpeg|png|gif|bmp|tiff)$')
         elif selected_preset == "None":
             self.regex_var.set("")
         self.check_for_regex_change()
